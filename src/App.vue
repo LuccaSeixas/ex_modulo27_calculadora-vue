@@ -1,47 +1,115 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div class="fundo">
+    <h1>
+      Calculadora criada com Vue.JS
+    </h1>
+    <div class="calculadora">
+      <h2>
+        Calculadora
+      </h2>
+      <p id="resultado">1.000</p>
+      <table>
+        <tr>
+          <td><button class="botao">C</button></td>
+          <td><button class="botao"><</button></td>
+          <td><button class="botao">/</button></td>
+          <td><button class="botao">X</button></td>
+        </tr>
+        <tr>
+          <td><button class="botao">7</button></td>
+          <td><button class="botao">8</button></td>
+          <td><button class="botao">9</button></td>
+          <td><button class="botao">-</button></td>
+        </tr>
+        <tr>
+          <td><button class="botao">4</button></td>
+          <td><button class="botao">5</button></td>
+          <td><button class="botao">6</button></td>
+          <td><button class="botao">+</button></td>
+        </tr>
+        <tr>
+          <td><button class="botao">1</button></td>
+          <td><button class="botao">2</button></td>
+          <td><button class="botao">3</button></td>
+          <td rowspan="2"><button id="botaoSpace" class="botao">=</button></td>
+        </tr>
+        <tr>
+          <td colspan="2" ><button id="botao0" class="botao">0</button></td>
+          <td><button class="botao">.</button></td>
+        </tr>
+      </table>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgb(216, 210, 203);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  .fundo{
+    height: 100vh;
+    background-image: linear-gradient(180deg, rgb(7, 7, 46), hsl(229, 64%, 53%));
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  h1, h2{
+    text-align: center;
   }
+
+  .calculadora{
+    background-color: rgb(17, 17, 17);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 15px;
+    padding: 20px 15px;
+  }
+
+  table{
+    justify-content: center;
+    display: grid;
+  }
+
+  .botao{
+    width: 50px;
+    height: 50px;
+    margin: 2px;
+    font-size: 25px;
+    background-color: rgb(46, 45, 45);
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+
+.botao:hover{
+  background-color: rgb(0, 0, 0);
 }
+
+#botao0{
+  width: 106px;
+}
+
+#botaoSpace{
+  height: 106px;
+}
+
+#resultado{
+  background-color: #fff;
+  padding: 4px 4px 4px 0;
+  margin: 12px 0;
+  text-align: end;
+  position: relative;
+  top: 100%;
+  color: black;
+  font-size: 25px;
+}
+
 </style>
