@@ -1,4 +1,26 @@
 <script setup>
+import { reactive } from 'vue';
+
+
+  const estado = reactive({
+    num: '',
+  })
+
+  const insert = (num) => {
+    estado.num += num;
+  };
+
+  const clear = () => {
+    estado.num = '';
+  };
+
+  const back = () => {
+    estado.num = estado.num.substring(0, estado.num.length -1);
+  };
+
+  const calc = () => {
+    estado.num = eval(estado.num);
+  };
 
 </script>
 
@@ -11,35 +33,35 @@
       <h2>
         Calculadora
       </h2>
-      <p id="resultado">1.000</p>
+      <p id="resultado">{{ estado.num }}</p>
       <table>
         <tr>
-          <td><button class="botao">C</button></td>
-          <td><button class="botao"><</button></td>
-          <td><button class="botao">/</button></td>
-          <td><button class="botao">X</button></td>
+          <td><button class="botao" @click="clear()">C</button></td>
+          <td><button class="botao" @click="back()"><</button></td>
+          <td><button class="botao" @click="insert('/')">/</button></td>
+          <td><button class="botao" @click="insert('*')">x</button></td>
         </tr>
         <tr>
-          <td><button class="botao">7</button></td>
-          <td><button class="botao">8</button></td>
-          <td><button class="botao">9</button></td>
-          <td><button class="botao">-</button></td>
+          <td><button class="botao" @click="insert('7')">7</button></td>
+          <td><button class="botao" @click="insert('8')">8</button></td>
+          <td><button class="botao" @click="insert('9')">9</button></td>
+          <td><button class="botao" @click="insert('-')">-</button></td>
         </tr>
         <tr>
-          <td><button class="botao">4</button></td>
-          <td><button class="botao">5</button></td>
-          <td><button class="botao">6</button></td>
-          <td><button class="botao">+</button></td>
+          <td><button class="botao" @click="insert('4')">4</button></td>
+          <td><button class="botao" @click="insert('5')">5</button></td>
+          <td><button class="botao" @click="insert('6')">6</button></td>
+          <td><button class="botao" @click="insert('+')">+</button></td>
         </tr>
         <tr>
-          <td><button class="botao">1</button></td>
-          <td><button class="botao">2</button></td>
-          <td><button class="botao">3</button></td>
-          <td rowspan="2"><button id="botaoSpace" class="botao">=</button></td>
+          <td><button class="botao" @click="insert('1')">1</button></td>
+          <td><button class="botao" @click="insert('2')">2</button></td>
+          <td><button class="botao" @click="insert('3')">3</button></td>
+          <td rowspan="2"><button id="botaoSpace" class="botao" @click="calc()">=</button></td>
         </tr>
         <tr>
-          <td colspan="2" ><button id="botao0" class="botao">0</button></td>
-          <td><button class="botao">.</button></td>
+          <td colspan="2" ><button id="botao0" class="botao" @click="insert('0')">0</button></td>
+          <td><button class="botao" @click="insert('.')">.</button></td>
         </tr>
       </table>
     </div>
@@ -53,6 +75,10 @@
     box-sizing: border-box;
     color: rgb(216, 210, 203);
   }
+
+  body {
+    margin: 0 !important;
+}
 
   .fundo{
     height: 100vh;
@@ -71,11 +97,6 @@
     transform: translate(-50%,-50%);
     border-radius: 15px;
     padding: 20px 15px;
-  }
-
-  table{
-    justify-content: center;
-    display: grid;
   }
 
   .botao{
@@ -105,6 +126,7 @@
   background-color: #fff;
   padding: 4px 4px 4px 0;
   margin: 12px 0;
+  min-height: 36px;
   text-align: end;
   position: relative;
   top: 100%;
